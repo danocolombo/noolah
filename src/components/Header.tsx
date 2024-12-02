@@ -9,7 +9,8 @@ import {
 } from 'lucide-react';
 import { icons } from 'lucide-react';
 import Link from 'next/link';
-// import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
+import { Button } from '@/components/ui/button';
+import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
 //* ===============
 //* icons === https://lucide.dev/icons/
 //* ===============
@@ -58,7 +59,7 @@ export function Header() {
                         href='/participants'
                     />
                     <ModeToggle />
-                    {/*
+
                     <Button
                         variant={'ghost'}
                         size='icon'
@@ -71,7 +72,6 @@ export function Header() {
                             <LogOut />
                         </LogoutLink>
                     </Button>
-                    */}
                 </div>
             </div>
         </header>
