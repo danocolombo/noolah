@@ -7,7 +7,6 @@ import {
     ArrowLeftRight,
     LogOut,
 } from 'lucide-react';
-import { icons } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
