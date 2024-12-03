@@ -1,0 +1,400 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "accounts": {
+      "name": "accounts",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "institution_id": {
+          "autoincrement": false,
+          "name": "institution_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reference_id": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "reference_id",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "account_type": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "account_type",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "balance": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "balance",
+          "type": "float",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "default": "'''ACTIVE'''",
+          "autoincrement": false,
+          "name": "status",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "institutions": {
+      "name": "institutions",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "street": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "street",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "city": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "city",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "state_prov": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "state_prov",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "postal_code": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "postal_code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "logo_url": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "logo_url",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "obligations": {
+      "name": "obligations",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "participant_id": {
+          "autoincrement": false,
+          "name": "participant_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "obligation_type": {
+          "default": "'''ONE_TIME'''",
+          "autoincrement": false,
+          "name": "obligation_type",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "due_date": {
+          "autoincrement": false,
+          "name": "due_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "amount": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "amount",
+          "type": "double",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "end_date": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "end_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tax_deduction": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "tax_deduction",
+          "type": "tinyint(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "due_day": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "due_day",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "obligations_participant_id_IDX": {
+          "name": "obligations_participant_id_IDX",
+          "columns": [
+            "participant_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "obligations_participants_FK": {
+          "name": "obligations_participants_FK",
+          "tableFrom": "obligations",
+          "tableTo": "participants",
+          "columnsFrom": [
+            "participant_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "participants": {
+      "name": "participants",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "street": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "street",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "city": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "city",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stateProv": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "stateProv",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "postalCode": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "postalCode",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "category": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "category",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "transactions": {
+      "name": "transactions",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "autoincrement": false,
+          "name": "date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "participant_id": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "participant_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "obligation_id": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "obligation_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "payee_name": {
+          "autoincrement": false,
+          "name": "payee_name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "amount": {
+          "autoincrement": false,
+          "name": "amount",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "account_id": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "account_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cleared": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "cleared",
+          "type": "tinyint(1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "notes": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "notes",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "transactions_accounts_FK": {
+          "name": "transactions_accounts_FK",
+          "tableFrom": "transactions",
+          "tableTo": "accounts",
+          "columnsFrom": [
+            "account_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "transactions_participants_FK": {
+          "name": "transactions_participants_FK",
+          "tableFrom": "transactions",
+          "tableTo": "participants",
+          "columnsFrom": [
+            "participant_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}
